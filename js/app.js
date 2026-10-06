@@ -1,6 +1,6 @@
 const expressionDisplay = document.getElementById("expression");
 const resultDisplay = document.getElementById("result");
-
+const API_BASE_URL = "https://eight32402230-calculator-backend.onrender.com";
 let expression = "";
 
 
@@ -43,7 +43,7 @@ document.getElementById("equals").addEventListener("click", async () => {
     }
 
     try {
-        const response = await fetch("http://127.0.0.1:8000/api/calculate", {
+        const response = await fetch(`${API_BASE_URL}/api/calculate`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
@@ -73,7 +73,7 @@ document.getElementById("equals").addEventListener("click", async () => {
 
 async function deleteHistory(id) {
     const response = await fetch(
-        `http://127.0.0.1:8000/api/history/${id}`,
+        `${API_BASE_URL}/api/history/${id}`,
         {
             method: "DELETE"
         }
@@ -89,7 +89,7 @@ async function deleteHistory(id) {
 
 
 async function loadHistory() {
-    const response = await fetch("http://127.0.0.1:8000/api/history");
+    const response = await fetch(`${API_BASE_URL}/api/history`);
     const history = await response.json();
 
     const historyBox = document.getElementById("history-list");
